@@ -1,0 +1,16 @@
+#lang racket
+
+; This function calculates the value at a term for the power series
+(define (seriesTerm n)
+  [ expt (/ 1 3) (- n 1)] ) 
+
+; This function recursively calculates a power series to a number of terms
+(define (powerSeries x)
+  (if (< x 2)
+      1
+      (+ (seriesTerm x) (powerSeries (- x 1)) ) ) )
+
+; Approximate the power series to a number of terms and display
+(define numTerms 20)
+(printf "The power series evaluated x = ~v" numTerms)
+(printf " terms is equal to: ~v\n"(exact->inexact[powerSeries numTerms]))
